@@ -1,0 +1,48 @@
+==============================================================================
+BUCKET 1 — Would now QUALIFY under high-budget override: 3
+==============================================================================
+   id=recV5VoyDYVa2f8ui created=2026-05-30T05:01:54.000Z First Name='Test' Last Name='Budget' Investment Amount='$2,500-$4,000' Seriousness='I am fully committed' Readiness='Ready to start'
+   id=recizYnnq4UGqRTAx created=2026-05-30T05:01:16.000Z First Name='Test' Last Name='Budget' Investment Amount='$2,500-$4,000' Seriousness='I am fully committed' Readiness='Ready to start'
+   id=reckSftQEFnCHhDUr created=2026-06-01T00:08:46.000Z First Name='Edgar Alvarez' Last Name='Es' Investment Amount='$4,000+' Seriousness="I'm fully committed to becoming consistently profitable" Readiness='Fully ready'
+
+==============================================================================
+BUCKET 2 — Would now be REVIEW MANUALLY (empty budget): 168
+==============================================================================
+   id=rec04FDH97Lf5AzC8 created=2026-04-21T21:04:36.000Z First Name='GURU N' Last Name='NARAYANAN' Investment Amount='<empty>' Seriousness="I'm fully committed to becoming consistently profitable" Readiness='Fully ready'
+   id=rec0HcHU18vgRunfK created=2026-05-26T02:50:30.000Z First Name='Order' Last Name='School' Investment Amount='<empty>' Seriousness="I'm fully committed to becoming consistently profitable" Readiness='Fully ready'
+   id=rec0SwRB9IiaX8XyV created=2026-05-28T04:00:42.000Z First Name='Khalid' Last Name='Shah' Investment Amount='<empty>' Seriousness="I'm fully committed to becoming consistently profitable" Readiness='Fully ready'
+   id=rec0TvPPrzeMoBJD7 created=2026-04-20T17:33:09.000Z First Name='Ricky ' Last Name='Perez ' Investment Amount='<empty>' Seriousness="I'm fully committed to becoming consistently profitable" Readiness='Fully ready'
+   id=rec0YQ2UNJTRurzcE created=2026-05-19T07:14:30.000Z First Name='Mohammed ' Last Name='Sahil' Investment Amount='<empty>' Seriousness="I'm serious and ready to put in the work" Readiness='Ready to commit'
+   id=rec0Zs0weWmmMYBdW created=2026-04-22T22:45:02.000Z First Name='Sherali' Last Name='Ibrohimov' Investment Amount='<empty>' Seriousness="I'm fully committed to becoming consistently profitable" Readiness='Fully ready'
+   id=rec1HJHKDCA4vfWSc created=2026-05-07T22:37:42.000Z First Name='Jorge' Last Name='Cuuubamba Lamberto' Investment Amount='<empty>' Seriousness="I'm fully committed to becoming consistently profitable" Readiness='Fully ready'
+   id=rec1KaYikHSzqdp21 created=2026-04-21T17:26:36.000Z First Name='Cooldown' Last Name='Test' Investment Amount='<empty>' Seriousness='Curious, but not fully committed' Readiness='Just exploring'
+   id=rec1bFFdM6VGy1sGZ created=2026-05-06T00:55:40.000Z First Name='Chirag' Last Name='Pradhan' Investment Amount='<empty>' Seriousness="I'm fully committed to becoming consistently profitable" Readiness='Fully ready'
+   id=rec1jR0m8zKfQ5QIP created=2026-05-06T04:34:45.000Z First Name='Titi' Last Name='Modeste' Investment Amount='<empty>' Seriousness="I want to improve, but I haven't treated it seriously enough yet" Readiness='Fully ready'
+   id=rec29y3qAvdgClW5q created=2026-04-21T20:09:25.000Z First Name='Abraham ' Last Name='Mayuol ' Investment Amount='<empty>' Seriousness="I'm fully committed to becoming consistently profitable" Readiness='Fully ready'
+   id=rec2FAgpPrlotBXk8 created=2026-04-21T20:52:33.000Z First Name='Filippos' Last Name='Maragkos' Investment Amount='<empty>' Seriousness="I'm fully committed to becoming consistently profitable" Readiness='Ready to commit'
+   id=rec2Hi8jpdpqn3Rcs created=2026-05-03T07:02:57.000Z First Name='Sylvester ' Last Name='Aghanwagbo ' Investment Amount='<empty>' Seriousness="I'm serious and ready to put in the work" Readiness='Fully ready'
+   id=rec3DE6ZdYppVlHaC created=2026-04-23T18:32:05.000Z First Name='Bharat ' Last Name='Mali' Investment Amount='<empty>' Seriousness="I'm serious and ready to put in the work" Readiness='Ready to commit'
+   id=rec3ThiAGnUBrDRrx created=2026-05-26T01:58:01.000Z First Name='TestDisqualified' Last Name='<empty>' Investment Amount='<empty>' Seriousness='Curious, but not fully committed' Readiness='Just exploring'
+   id=rec3uQgeB6x1HMgCt created=2026-05-05T19:10:53.000Z First Name='Chintan' Last Name='Sutaria' Investment Amount='<empty>' Seriousness="I'm fully committed to becoming consistently profitable" Readiness='Ready to commit'
+   id=rec4PKGhvMkQKE1L1 created=2026-05-15T15:27:45.000Z First Name='Kaushal' Last Name='Chaudhary' Investment Amount='<empty>' Seriousness="I'm serious and ready to put in the work" Readiness='Fully ready'
+   id=rec4QWCjcwfSkv3vf created=2026-05-08T11:16:31.000Z First Name='Jose' Last Name='Berrios' Investment Amount='<empty>' Seriousness="I'm serious and ready to put in the work" Readiness='Fully ready'
+   id=rec4u0bia4qYDhppB created=2026-05-17T10:07:28.000Z First Name='Wassim' Last Name='Shahin' Investment Amount='<empty>' Seriousness="I'm fully committed to becoming consistently profitable" Readiness='Fully ready'
+   id=rec5HHUQUI5zirtII created=2026-05-07T20:05:16.000Z First Name='<empty>' Last Name='<empty>' Investment Amount='<empty>' Seriousness="I'm serious and ready to put in the work" Readiness='Ready to commit'
+   id=rec5QFuO8uTccphXn created=2026-04-30T18:31:41.000Z First Name='Sunny' Last Name='Alam' Investment Amount='<empty>' Seriousness="I'm fully committed to becoming consistently profitable" Readiness='Interested but unsure'
+   id=rec634JmgI3WGyiZA created=2026-04-26T17:55:07.000Z First Name='Rubel' Last Name='Trader' Investment Amount='<empty>' Seriousness="I'm serious and ready to put in the work" Readiness='Fully ready'
+   id=rec6j6vCsQ8LpePqY created=2026-05-08T03:08:10.000Z First Name='sumer' Last Name='jagithta' Investment Amount='<empty>' Seriousness="I want to improve, but I haven't treated it seriously enough yet" Readiness='Ready to commit'
+   id=rec6pso9Ki5sNoN0W created=2026-04-20T22:02:53.000Z First Name='Khairul ' Last Name='<empty>' Investment Amount='<empty>' Seriousness="I'm fully committed to becoming consistently profitable" Readiness='Fully ready'
+   id=rec6t40m9dDhSApZ9 created=2026-05-29T11:18:06.000Z First Name='Wijdan' Last Name='Karim' Investment Amount='<empty>' Seriousness="I'm fully committed to becoming consistently profitable" Readiness='Fully ready'
+   id=rec73dYiHzVUo65VH created=2026-05-15T17:50:01.000Z First Name='Gorakshnath' Last Name='Turakane' Investment Amount='<empty>' Seriousness="I'm fully committed to becoming consistently profitable" Readiness='Fully ready'
+   id=rec7Sdhcg9WMVMFEL created=2026-04-21T17:26:38.000Z First Name='Cooldown' Last Name='Test' Investment Amount='<empty>' Seriousness="I'm fully committed to becoming consistently profitable" Readiness='Fully ready'
+   id=rec7XrVfinzp6ggCk created=2026-04-24T12:46:43.000Z First Name='Georgio' Last Name='Bou Doumit' Investment Amount='<empty>' Seriousness="I'm fully committed to becoming consistently profitable" Readiness='Fully ready'
+   id=rec8CYkQhaNfCFKEP created=2026-05-07T20:05:58.000Z First Name='DIMITRIOS ' Last Name='STAGKOS' Investment Amount='<empty>' Seriousness="I'm fully committed to becoming consistently profitable" Readiness='Fully ready'
+   id=rec8h35NVT4FdVeri created=2026-05-28T15:30:04.000Z First Name='Nicholas' Last Name='Anak Krndy' Investment Amount='<empty>' Seriousness="I'm fully committed to becoming consistently profitable" Readiness='Fully ready'
+  ... and 138 more
+
+==============================================================================
+BUCKET 3 — Likely 7-day cooldown false negatives: 1
+==============================================================================
+  EMAIL: joshhenry383@gmail.com  gap=1:42:31
+    A: id=recggmc05XmL6WQUk created=2026-05-08T20:24:14.000Z First Name='Joshua' Last Name='Henry ' Investment Amount='<empty>' Seriousness="I'm fully committed to becoming consistently profitable" Readiness='Ready to commit'
+    B: id=recw6DVBL0WsoMmCT created=2026-05-08T22:06:45.000Z First Name='Joshua' Last Name='Henry' Investment Amount='<empty>' Seriousness="I'm fully committed to becoming consistently profitable" Readiness='Fully ready'

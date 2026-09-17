@@ -1,0 +1,29 @@
+/* Global behaviours shared by every page.
+   Component and token styles live in ofs-design.css. */
+
+html { scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* One focus treatment for the whole app: a gold ring, which is the brand's
+   "gold is light, never text" rule doing real work. */
+*:focus-visible {
+  outline: 2px solid #C9A84C;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Scrollbar, tuned to the dark ground rather than left as the OS default */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #04070D; }
+::-webkit-scrollbar-thumb {
+  background: rgba(226, 234, 242, 0.14);
+  border-radius: 999px;
+  border: 2px solid #04070D;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(226, 234, 242, 0.24); }
+html { scrollbar-color: rgba(226,234,242,0.16) #04070D; }
+
+img, svg, video { max-width: 100%; }
