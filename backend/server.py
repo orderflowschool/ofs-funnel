@@ -604,20 +604,10 @@ async def submit_application(data: ApplicationSubmission):
     await db.applications.insert_one(doc)
 
     # 3. Forward to Airtable
-    #    NOTE: Budget answer must be written to the singleSelect field "Investment Amount"
-    #    (field ID: fldvu4Vz3Ovlb6tXe). The legacy singleLineText field "Investment"
-    #    (fldcp1Dd732ACZa9k) is DEPRECATED and must NOT be written to. The qualification
-    #    rule reads from Investment Amount, so writing to the wrong field caused
-    #    high-budget leads to be silently marked Not Qualified.
-    # The Applications table has no dedicated revalidation column, and Airtable
-    # rejects the whole record create on an unknown field name — so the enrolment
-    # re-check answer is surfaced in the existing "Notes" field instead (only
-    # non-Tier-1 qualified applicants are ever asked). If a dedicated
-    # "Investment Revalidation" column is added later, write to it directly.
-    notes_line = (
-        f"Enrolment re-check ($3k): {data.investmentRevalidation.strip()}"
-        if (data.investmentRevalidation or "").strip() else ""
-    )
+    #    Writes to the "Funnel Applications (Live)" table (set via AIRTABLE_TABLE_ID).
+    #    Budget goes to the "Investment Amount" singleSelect (typecast creates the
+    #    option if missing); the enrolment re-check answer goes to its own
+    #    "Investment Revalidation" column.
     airtable_fields = {
         "First Name": data.firstName,
         "Last Name": data.lastName,
@@ -632,10 +622,9 @@ async def submit_application(data: ApplicationSubmission):
         "Seriousness": data.seriousness or "",
         "Why OFS": data.whyOFS or "",
         "Readiness": data.readiness or "",
-        # Write budget to the correct singleSelect field by field ID (Investment Amount).
-        "fldvu4Vz3Ovlb6tXe": data.investment or "",
+        "Investment Amount": data.investment or "",
         "Call Willingness": data.callWillingness or "",
-        "Notes": notes_line,
+        "Investment Revalidation": data.investmentRevalidation or "",
         "Qualified Status": qualified_status_value,
         "Lead Status": "New Application",
         "Source": "Funnel",
