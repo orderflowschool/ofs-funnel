@@ -30,7 +30,7 @@ const Fallback = () => (
       className="ofs-btn ofs-btn--auto"
       onClick={() => trackCTAClick('OFS Live · checkout fallback')}
     >
-      Start my free day <span className="ofs-arrow" aria-hidden="true">&rarr;</span>
+      Start my free trial <span className="ofs-arrow" aria-hidden="true">&rarr;</span>
     </a>
   </div>
 );
