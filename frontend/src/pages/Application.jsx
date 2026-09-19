@@ -30,9 +30,11 @@ const IS_PREVIEW =
   typeof window !== 'undefined' &&
   /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname);
 
+// Mirrors backend/server.py exactly: core budget/commitment rules + the country
+// re-check, plus the English-language gate. Call willingness does NOT gate — a
+// strong lead who is "not right now" still qualifies and decides whether to book.
 const simulateQualified = (data) =>
   passesCoreQualification(data) &&
-  data.callWillingness === 'Yes' &&
   data.speaksEnglish !== 'No' &&
   !(needsInvestmentRevalidation(data) && data.investmentRevalidation === REVALIDATION.NO);
 

@@ -596,6 +596,19 @@ async def submit_application(data: ApplicationSubmission):
             needs_manual_review = True
             is_qualified = False
 
+    # Language gate: a qualified lead is offered an English-language call, so an
+    # applicant who explicitly does not speak English is routed to OFS Live
+    # instead of the booking page. (Only asked outside English-primary countries;
+    # blank means the question was not shown, so it never gates those leads.)
+    # Call willingness is intentionally NOT a gate — a strong lead who answers
+    # "not right now" still qualifies and can decide whether to book.
+    if is_qualified and (data.speaksEnglish or "").strip() == "No":
+        logger.info(
+            f"[LANGUAGE] Application {app_id} passed core rules but does not speak "
+            f"English — routing to OFS Live. email={data.email} country={data.country}"
+        )
+        is_qualified = False
+
     qualified_status_value = (
         "Review Manually" if needs_manual_review
         else ("Qualified" if is_qualified else "Not Qualified")
