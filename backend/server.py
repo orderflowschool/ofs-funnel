@@ -42,6 +42,14 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
+def email_filter(email: str) -> dict:
+    """Case-insensitive EXACT match on an email for Mongo queries, with regex
+    metacharacters escaped. Emails legitimately contain '+' and '.', which are
+    regex operators — an unescaped pattern would fail to match (e.g. gmail
+    aliases) or over-match a different person's record."""
+    return {"$regex": f"^{re.escape(email.strip())}$", "$options": "i"}
+
+
 # ─── GHL Helper ───
 
 async def ghl_create_or_update_contact(email: str, first_name: str, last_name: str, phone: str, tags: list):
@@ -279,7 +287,7 @@ async def submit_waitlist(data: WaitlistSubmission):
     # 1-hour dedupe (same rule as /applications)
     one_hour_ago = (now_dt - timedelta(hours=1)).isoformat()
     recent = await db.waitlist.find_one(
-        {"email": {"$regex": f"^{data.email.strip()}$", "$options": "i"},
+        {"email": email_filter(data.email),
          "created_at": {"$gte": one_hour_ago}},
         {"_id": 0, "id": 1},
     )
@@ -415,7 +423,7 @@ async def submit_application(data: ApplicationSubmission):
     one_hour_ago_iso = (now_dt - timedelta(hours=1)).isoformat()
 
     recent_submission = await db.applications.find_one(
-        {"email": {"$regex": f"^{data.email.strip()}$", "$options": "i"},
+        {"email": email_filter(data.email),
          "created_at": {"$gte": one_hour_ago_iso}},
         {"_id": 0, "id": 1, "created_at": 1},
         sort=[("created_at", -1)],
@@ -429,7 +437,7 @@ async def submit_application(data: ApplicationSubmission):
         )
 
     prev_qualified = await db.applications.find_one(
-        {"email": {"$regex": f"^{data.email.strip()}$", "$options": "i"},
+        {"email": email_filter(data.email),
          "qualified": True},
         {"_id": 0, "id": 1, "created_at": 1},
         sort=[("created_at", -1)],
@@ -674,7 +682,7 @@ async def booking_confirmed(data: BookingConfirmation):
 
     # Find the most recent qualified application for this email
     record = await db.applications.find_one(
-        {"email": {"$regex": f"^{email}$", "$options": "i"}, "qualified": True},
+        {"email": email_filter(email), "qualified": True},
         {"_id": 0, "id": 1, "booked": 1},
         sort=[("created_at", -1)],
     )
@@ -729,29 +737,38 @@ async def calendly_webhook(request: Request):
     if not email:
         return {"status": "no_email"}
 
-    if event_type == "invitee.canceled":
-        # Lead cancelled their booked call
-        contact_id = await ghl_lookup_contact_by_email(email)
-        if contact_id:
-            await ghl_add_tags(contact_id, ["Cancelled"])
-            logger.info(f"Calendly cancellation for {email} — tagged 'Cancelled'")
-        await db.applications.update_one(
-            {"email": {"$regex": f"^{email}$", "$options": "i"}, "booked": True},
-            {"$set": {"cancelled": True, "cancelled_at": datetime.now(timezone.utc).isoformat()}}
+    # Only act on emails that already exist as an application in our DB. This
+    # endpoint is public (the URL is in the repo), so gating on a known lead
+    # stops a forged webhook from creating/tagging arbitrary GHL contacts.
+    if event_type in ("invitee.canceled", "invitee_no_show.created"):
+        record = await db.applications.find_one(
+            {"email": email_filter(email)},
+            {"_id": 0, "id": 1},
+            sort=[("created_at", -1)],
         )
-        return {"status": "cancelled_tagged"}
+        if not record:
+            logger.info(f"Calendly webhook for unknown email {email} — ignored")
+            return {"status": "no_matching_application"}
 
-    if event_type == "invitee_no_show.created":
-        # Lead no-showed their booked call
+        now_iso = datetime.now(timezone.utc).isoformat()
+        if event_type == "invitee.canceled":
+            await db.applications.update_one(
+                {"id": record["id"]},
+                {"$set": {"cancelled": True, "cancelled_at": now_iso}},
+            )
+            tag, status = "Cancelled", "cancelled_tagged"
+        else:
+            await db.applications.update_one(
+                {"id": record["id"]},
+                {"$set": {"no_show": True, "no_show_at": now_iso}},
+            )
+            tag, status = "No Show", "no_show_tagged"
+
         contact_id = await ghl_lookup_contact_by_email(email)
         if contact_id:
-            await ghl_add_tags(contact_id, ["No Show"])
-            logger.info(f"Calendly no-show for {email} — tagged 'No Show'")
-        await db.applications.update_one(
-            {"email": {"$regex": f"^{email}$", "$options": "i"}, "booked": True},
-            {"$set": {"no_show": True, "no_show_at": datetime.now(timezone.utc).isoformat()}}
-        )
-        return {"status": "no_show_tagged"}
+            await ghl_add_tags(contact_id, [tag])
+            logger.info(f"Calendly {event_type} for {email} — tagged '{tag}'")
+        return {"status": status}
 
     return {"status": "event_ignored", "event": event_type}
 
