@@ -11,25 +11,25 @@ import useSectionView from '../../hooks/useSectionView';
    "the only school" superlatives. */
 const INCLUDED = [
   {
-    n: '01', job: 'Observe', title: 'Order-flow software',
-    d: 'Use the same type of footprint and order-flow tools demonstrated inside OFS to study the market and apply the framework yourself.',
+    n: '01', job: 'Implement', title: 'Direct 1:1 guidance',
+    d: 'The core of the program: I personally help you implement order flow into the strategy you already trade — your charts, your sessions, your decisions, worked through directly with me.',
   },
   {
-    n: '02', job: 'Watch', title: 'Live market environment',
-    d: 'See how Context, Location, Aggression and Reaction develop while the outcome is still unknown.',
+    n: '02', job: 'Tools', title: 'Order-flow software',
+    d: 'OFS students get a 3-month license for DeepCharts and DeepDOM — the footprint and order-flow tools — completely on us, so you can apply the framework from day one.',
+  },
+  {
+    n: '03', job: 'Live', title: 'OFS Live Room',
+    d: 'Lifetime access to the OFS Live Room — live trading with me every week. Watch how Context, Location, Aggression and Reaction develop while the outcome is still unknown.',
     d2: 'The goal isn’t to copy trades — it’s to see the decision process under real market conditions.',
   },
   {
-    n: '03', job: 'Refine', title: 'Direct 1:1 guidance',
-    d: 'Your charts, your sessions, your decisions — reviewed directly with Edgar, around the strategy you already trade.',
+    n: '04', job: 'Learn', title: 'Full OFS curriculum',
+    d: 'More than 100 structured lessons, shaped to build your career as an order-flow trader — from the foundations through applying the framework independently across real market conditions.',
   },
   {
-    n: '04', job: 'Apply', title: 'Group classes',
-    d: 'Go deeper into real sessions, common execution problems and the framework with the wider OFS community.',
-  },
-  {
-    n: '05', job: 'Learn', title: 'Full OFS curriculum',
-    d: 'Build the foundation first, then learn how to apply the framework independently across real market conditions.',
+    n: '05', job: 'Community', title: 'A community of serious traders',
+    d: 'Access to a community of like-minded traders on the same path — which includes the group classes, where we go deeper into real sessions, common execution problems and the framework together.',
   },
 ];
 
