@@ -1117,6 +1117,64 @@ section[id]{ scroll-margin-top:calc(var(--nav-h) + 18px); }
   .ofs-commit--hard{ flex-direction:column; gap:14px; }
 }
 
+/* ── Booked-call confirmation page (PostBooking) ───────────── */
+/* Inbox hint under the hero checklist */
+.ofs-email-hint{ margin-top:clamp(20px,2.4vw,28px); font-size:13px; line-height:1.6; color:var(--muted); }
+.ofs-email-hint strong{ color:var(--body); font-weight:600; }
+
+/* "What we sent you" — two premium resource cards */
+.ofs-res-grid{
+  display:grid; grid-template-columns:1fr 1fr; gap:clamp(16px,2vw,24px);
+  margin-top:clamp(30px,3.4vw,44px);
+}
+.ofs-res-card{
+  display:flex; flex-direction:column; gap:12px;
+  padding:clamp(22px,2.6vw,32px);
+  background:var(--paper); border:1px solid var(--line-2); border-radius:var(--r-card);
+  box-shadow:var(--shadow-lift);
+  transition:transform .5s var(--ease), box-shadow .5s var(--ease), border-color .5s var(--ease);
+}
+.ofs-res-card:hover{ transform:translateY(-3px); border-color:var(--accent-line); }
+.ofs-res-k{ font-family:var(--font-mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent-ink); }
+.ofs-res-t{ margin:2px 0 0; font-size:clamp(19px,1.1vw + 1rem,25px); line-height:1.16; letter-spacing:-.01em; color:var(--ink); }
+.ofs-res-d{ margin:0; color:var(--muted); font-size:15px; line-height:1.6; }
+.ofs-res-meta{ margin-top:auto; display:flex; align-items:center; gap:12px; flex-wrap:wrap; padding-top:8px; }
+.ofs-res-type{
+  font-family:var(--font-mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--body);
+  border:1px solid var(--line-2); border-radius:999px; padding:5px 11px;
+}
+.ofs-res-sent{ font-size:12.5px; color:var(--muted); }
+
+/* "One thing to bring" — three concise prompts */
+.ofs-prep-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(18px,2.2vw,30px); margin-top:clamp(30px,3.4vw,44px); }
+.ofs-prep-item{ border-top:1px solid var(--line); padding-top:16px; }
+.ofs-prep-k{ margin:0; font-family:var(--font-mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); }
+.ofs-prep-q{ margin:10px 0 0; font-size:16px; line-height:1.5; color:var(--body); }
+
+/* Final recap chips */
+.ofs-recap{ display:flex; flex-wrap:wrap; gap:10px; margin-top:clamp(24px,2.6vw,32px); }
+.ofs-recap li{
+  display:inline-flex; align-items:center; gap:8px;
+  font-family:var(--font-mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink);
+  border:1px solid var(--accent-line); background:var(--accent-soft); border-radius:999px; padding:9px 14px;
+}
+.ofs-recap-ic{ display:inline-flex; width:14px; height:14px; color:var(--accent-ink); }
+.ofs-recap-ic svg{ width:14px; height:14px; }
+
+/* Mobile inbox reminder — informational strip, not a fake button */
+.ofs-emailbar{
+  position:fixed; left:0; right:0; bottom:0; z-index:60; transform:translateY(120%);
+  transition:transform .45s var(--ease); text-align:center;
+  background:rgba(11,13,14,.94); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+  border-top:1px solid rgba(250,249,246,.12);
+  padding:11px 16px calc(11px + env(safe-area-inset-bottom));
+}
+.ofs-emailbar.is-up{ transform:translateY(0); }
+.ofs-emailbar-t{ margin:0; font-family:var(--font-mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#FAF9F6; }
+.ofs-emailbar-s{ margin:3px 0 0; font-size:12px; color:#C6C8CB; }
+@media (min-width:760px){ .ofs-emailbar{ display:none; } }
+@media (max-width:759px){ .ofs-res-grid{ grid-template-columns:1fr; } .ofs-prep-grid{ grid-template-columns:1fr; gap:0; } .ofs-prep-item{ padding:16px 0; } }
+
 /* Embedded Whop checkout container (OFS Live page) */
 .ofs-checkout-card{
   max-width:540px; margin-inline:auto; text-align:left; min-height:120px;
