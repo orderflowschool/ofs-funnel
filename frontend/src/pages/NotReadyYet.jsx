@@ -3,7 +3,7 @@ import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import useReveal from '../hooks/useReveal';
 import { OFS_LIVE } from '../config/offers';
-import { trackCTAClick, trackVideoPlay } from '../utils/analytics';
+import { trackCTAClick } from '../utils/analytics';
 import EmbeddedCheckout from '../components/shared/WhopCheckout';
 
 /* Post-application page for applicants routed to OFS Live — a product they
@@ -14,7 +14,8 @@ import EmbeddedCheckout from '../components/shared/WhopCheckout';
 
 const MICRO = OFS_LIVE.trialMicro;
 
-/* Real clips from inside the live room (Bunny Stream). Click-to-load. */
+/* Real clips from inside the live room (Bunny Stream). Every clip loads its
+   player so it shows a real thumbnail; the first autoplays muted as a hook. */
 const LIVE_CLIPS = [
   { id: 'r1', videoUrl: 'https://player.mediadelivery.net/embed/738150/fbe29aef-d026-41fc-aa9a-d986c64131e0', cap: 'A live session, as it happened.' },
   { id: 'r2', videoUrl: 'https://player.mediadelivery.net/embed/738150/61b0b2b3-612c-491d-b8d3-26c86241180f', cap: 'Reading context while the move develops.' },
@@ -56,26 +57,23 @@ const LIVE_WINS = [
   },
 ];
 
-const RoomClip = ({ clip }) => {
-  const [playing, setPlaying] = useState(false);
+const RoomClip = ({ clip, autoplay = false }) => {
+  // First clip autoplays muted (silent hook); the rest load paused on their
+  // thumbnail. Muted is required — browsers block autoplay with sound.
+  const params = autoplay
+    ? 'autoplay=true&muted=true&loop=false&preload=true&responsive=true'
+    : 'autoplay=false&muted=true&loop=false&preload=true&responsive=true';
+  const src = `${clip.videoUrl}${clip.videoUrl.includes('?') ? '&' : '?'}${params}`;
   return (
     <li className="ofs-card ofs-card--hover ofs-room-card reveal">
       <div className="ofs-room-media">
-        {playing ? (
-          <iframe
-            src={`${clip.videoUrl}?autoplay=true&loop=false&muted=false&preload=true&responsive=true`}
-            title={`OFS Live — ${clip.cap}`}
-            allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;"
-            loading="lazy" allowFullScreen
-          />
-        ) : (
-          <button type="button" className="ofs-room-poster" onClick={() => { setPlaying(true); trackVideoPlay(`room_${clip.id}`); }}
-                  aria-label={`Play: ${clip.cap}`}>
-            <span className="ofs-teach-play" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
-            </span>
-          </button>
-        )}
+        <iframe
+          src={src}
+          title={`OFS Live — ${clip.cap}`}
+          allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;"
+          loading={autoplay ? 'eager' : 'lazy'}
+          allowFullScreen
+        />
       </div>
       <div className="ofs-room-body">
         <p className="ofs-teach-caption">{clip.cap}</p>
@@ -178,7 +176,7 @@ const NotReadyYet = () => {
 
       <main ref={scope}>
         {/* ── Qualification hero ─────────────────────────── */}
-        <section className="ofs-section t-dark" style={{ paddingTop: 'calc(var(--nav-h) + 72px)' }} aria-labelledby="live-h">
+        <section className="ofs-section t-dark" style={{ paddingTop: 'calc(var(--nav-h) + 72px)', paddingBottom: 'clamp(28px,3.5vw,48px)' }} aria-labelledby="live-h">
           <div className="ofs-wrap">
             <div style={{ maxWidth: '62ch' }}>
               <p className="ofs-label reveal" style={{ display: 'inline-flex', alignItems: 'center', gap: 9 }}>
@@ -211,7 +209,7 @@ const NotReadyYet = () => {
         </section>
 
         {/* ── See inside the live room (videos) ──────────── */}
-        <section className="ofs-section t-dark ofs-section--tight" aria-labelledby="room-h">
+        <section className="ofs-section t-dark ofs-section--tight" style={{ paddingTop: 'clamp(28px,3.5vw,48px)', paddingBottom: 'clamp(28px,3.5vw,48px)' }} aria-labelledby="room-h">
           <div className="ofs-wrap">
             <div className="reveal" style={{ maxWidth: '50ch' }}>
               <p className="ofs-label ofs-label--accent">See inside the live room</p>
@@ -220,13 +218,13 @@ const NotReadyYet = () => {
               </h2>
             </div>
             <ul className="ofs-room-grid">
-              {LIVE_CLIPS.map((clip) => <RoomClip key={clip.id} clip={clip} />)}
+              {LIVE_CLIPS.map((clip, i) => <RoomClip key={clip.id} clip={clip} autoplay={i === 0} />)}
             </ul>
           </div>
         </section>
 
         {/* ── Member testimonials (real screenshots) ─────── */}
-        <section className="ofs-section t-dark ofs-section--tint" aria-labelledby="fb-h">
+        <section className="ofs-section t-dark ofs-section--tint" style={{ paddingTop: 'clamp(28px,3.5vw,48px)' }} aria-labelledby="fb-h">
           <div className="ofs-wrap">
             <div style={{ maxWidth: '54ch' }}>
               <p className="ofs-label reveal">From the live room</p>
