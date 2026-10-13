@@ -35,6 +35,9 @@ function App() {
           <Route path="/booking-confirmed" element={<PostBooking />} />
           <Route path="/not-ready-yet" element={<NotReadyYet />} />
           <Route path="/live" element={<Live />} />
+          {/* Short address for the Instagram bio. Same page; visits to this
+              path show up separately in analytics, so no tracking tag is needed. */}
+          <Route path="/liveroom" element={<Live />} />
           {/* Any unknown URL (typos, stale links) goes home instead of a blank page. */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

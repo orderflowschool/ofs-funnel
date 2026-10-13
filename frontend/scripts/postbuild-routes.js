@@ -17,13 +17,17 @@ const path = require('path');
 const BUILD = path.join(__dirname, '..', 'build');
 const SITE = 'https://www.orderflowschool.com';
 
+const LIVE_META = {
+  title: 'OFS Live Room | Trade live with Edgar',
+  description: 'Watch Edgar read order flow and trade futures live, several times a week. Start a free trial of the OFS Live Room, or join the free Discord.',
+};
+
 const ROUTES = [
   // Public landing pages — indexable, with their own preview text.
-  {
-    path: 'live',
-    title: 'OFS Live Room | Trade live with Edgar',
-    description: 'Watch Edgar read order flow and trade futures live, several times a week. Start a free trial of the OFS Live Room, or join the free Discord.',
-  },
+  { path: 'live', ...LIVE_META },
+  // Short address used in the Instagram bio; same page, so search engines are
+  // pointed at /live as the one true address.
+  { path: 'liveroom', ...LIVE_META, canonical: 'live' },
   {
     path: 'apply',
     title: 'Apply | Order Flow School',
@@ -62,7 +66,7 @@ const setMeta = (html, attr, key, value) => {
 
 const render = (base, route) => {
   let html = base;
-  const url = `${SITE}/${route.path}`;
+  const url = `${SITE}/${route.canonical || route.path}`;
 
   if (route.title) {
     html = html.replace(/<title>[\s\S]*?<\/title>/, () => `<title>${esc(route.title)}</title>`);

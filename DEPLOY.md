@@ -43,7 +43,8 @@ start a deploy. After pushing, trigger a deploy on the affected service
 | `/apply` | Application form |
 | `/success` → `/booking-confirmed` | Qualified: book a call, then confirmation |
 | `/not-ready-yet` | Applicants routed to OFS Live |
-| `/live` | Direct Live Room page (Instagram bio): free trial or free Discord |
+| `/live` | Direct Live Room page: free trial or free Discord |
+| `/liveroom` | Same page at the short address used in the Instagram bio |
 | `/legal/:slug` | Legal pages |
 
 Offer details (price, trial wording, Whop plan, Discord invite) live in
