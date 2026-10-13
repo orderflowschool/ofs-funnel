@@ -8,7 +8,7 @@ import { trackCTAClick } from '../../utils/analytics';
  * primary action is never more than a thumb away — and never covers the
  * hero's own CTA while it's still on screen.
  */
-const HIDDEN_ON = ['/apply', '/success', '/booking', '/booking-confirmed', '/not-ready-yet', '/masterclass-confirmed', '/masterclass', '/legal'];
+const HIDDEN_ON = ['/apply', '/success', '/booking', '/booking-confirmed', '/not-ready-yet', '/live', '/masterclass-confirmed', '/masterclass', '/legal'];
 
 const MobileCTA = ({ watchSelector = '#hero-sentinel', endSelector = '#application', label = 'Apply to work with Edgar' }) => {
   const navigate = useNavigate();

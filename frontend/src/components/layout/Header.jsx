@@ -40,7 +40,7 @@ const useNavTheme = (enabled) => {
   return theme;
 };
 
-const Header = ({ ctaLabel = 'Apply', onCta }) => {
+const Header = ({ ctaLabel = 'Apply', onCta, ctaEvent = 'Nav Apply' }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const isHome = location.pathname === '/';
@@ -56,7 +56,7 @@ const Header = ({ ctaLabel = 'Apply', onCta }) => {
   }, [isHome]);
 
   const handle = () => {
-    trackCTAClick('Nav Apply');
+    trackCTAClick(ctaEvent);
     if (onCta) return onCta();
     navigate('/apply');
   };

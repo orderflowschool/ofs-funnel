@@ -10,6 +10,7 @@ import Success from "./pages/Success";
 import Booking from "./pages/Booking";
 import PostBooking from "./pages/PostBooking";
 import NotReadyYet from "./pages/NotReadyYet";
+import Live from "./pages/Live";
 import { initGA, initMetaPixel } from "./utils/analytics";
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <Route path="/booking" element={<Booking />} />
           <Route path="/booking-confirmed" element={<PostBooking />} />
           <Route path="/not-ready-yet" element={<NotReadyYet />} />
+          <Route path="/live" element={<Live />} />
           {/* Any unknown URL (typos, stale links) goes home instead of a blank page. */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
