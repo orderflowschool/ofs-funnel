@@ -7,7 +7,7 @@ import { OFS_LIVE, DISCORD } from '../config/offers';
 import { trackCTAClick } from '../utils/analytics';
 import EmbeddedCheckout from '../components/shared/WhopCheckout';
 import {
-  RoomClips, MemberWall, ResultsNote, UnlockGrid, DecisionFlow, FaqList,
+  RoomClips, MemberWall, ResultsNote, UnlockGrid, FaqList,
   TrialButton, DiscordButton, TrialBar, useTrialBar, scrollToCheckout,
 } from '../components/live/LiveRoom';
 
@@ -74,17 +74,17 @@ const Live = () => {
         {/* ── Hero: the invitation + both ways in ─────────── */}
         <section className="ofs-section t-dark" style={{ paddingTop: 'calc(var(--nav-h) + clamp(26px,5vw,64px))', paddingBottom: 'clamp(28px,3.5vw,48px)' }} aria-labelledby="live-h">
           <div className="ofs-wrap">
-            <div style={{ maxWidth: '62ch' }}>
+            <div className="ofs-live-hero-in">
               <p className="ofs-label reveal" style={{ display: 'inline-flex', alignItems: 'center', gap: 9 }}>
                 <span aria-hidden="true" style={{ width: 5, height: 5, borderRadius: 999, background: 'var(--accent)', display: 'inline-block' }} />
                 OFS Live Room
               </p>
 
-              <h1 id="live-h" className="reveal" style={{ marginTop: 18, maxWidth: '14ch', fontSize: 'clamp(33px,3.4vw + 1rem,64px)' }}>
+              <h1 id="live-h" className="reveal" style={{ marginTop: 18, maxWidth: '14ch', marginInline: 'auto', fontSize: 'clamp(33px,3.4vw + 1rem,64px)' }}>
                 Trade live with me, <span className="ofs-em">{OFS_LIVE.sessionsPerWeek} times a week</span>.
               </h1>
 
-              <p className="ofs-lead reveal" style={{ marginTop: 20, maxWidth: '50ch' }}>
+              <p className="ofs-lead reveal" style={{ marginTop: 20, maxWidth: '50ch', marginInline: 'auto' }}>
                 Sit in while I read order flow and trade futures in real time.
                 You hear the read before the trade: what I&rsquo;m waiting for,
                 why I take it, why I pass.
@@ -99,13 +99,6 @@ const Live = () => {
               <p className="ofs-fine reveal" style={{ marginTop: 4 }}>
                 Free Discord: {DISCORD.memberCount} traders, no card needed.
               </p>
-
-              <figure className="ofs-hero-quote reveal">
-                <blockquote>
-                  &ldquo;This is what happens when there is a good mentor with full transparency.&rdquo;
-                </blockquote>
-                <figcaption>ronaldopekel, in the live room</figcaption>
-              </figure>
             </div>
           </div>
           <div id="live-hero-end" aria-hidden="true" style={{ height: 1 }} />
@@ -114,7 +107,8 @@ const Live = () => {
         {/* ── Inside the room (clips) ─────────────────────── */}
         <section className="ofs-section t-dark ofs-section--tight" style={{ paddingTop: 'clamp(28px,3.5vw,48px)' }} aria-labelledby="room-h">
           <div className="ofs-wrap">
-            <div className="reveal" style={{ maxWidth: '50ch' }}>
+            {/* Centered to continue the hero's centre line straight into the clips */}
+            <div className="reveal" style={{ maxWidth: '50ch', marginInline: 'auto', textAlign: 'center' }}>
               <p className="ofs-label ofs-label--accent">Inside the live room</p>
               <h2 id="room-h" style={{ marginTop: 12, fontSize: 'clamp(22px,1.4vw + 1rem,30px)' }}>
                 This is what a session <span className="ofs-em">looks like</span>.
@@ -253,24 +247,30 @@ const Live = () => {
           </div>
         </section>
 
-        {/* ── The point of the room ───────────────────────── */}
-        <section className="ofs-section t-dark" aria-labelledby="point-h">
-          <div className="ofs-wrap ofs-split">
-            <div className="ofs-split-aside">
-              <p className="ofs-label reveal">The point of the room</p>
-              <h2 id="point-h" className="reveal" style={{ marginTop: 16 }}>
-                Don&rsquo;t just watch the trade. <span className="ofs-em">Understand the decision.</span>
+        {/* ── The 1:1 mentorship, for people who want more ── */}
+        <section className="ofs-section t-dark" aria-labelledby="mentor-h">
+          <div className="ofs-wrap ofs-bridge-in">
+            <div style={{ maxWidth: '54ch' }}>
+              <p className="ofs-label reveal">Private mentorship</p>
+              <h2 id="mentor-h" className="reveal" style={{ marginTop: 16 }}>
+                Want me working on your trading <span className="ofs-em">directly</span>?
               </h2>
-              <p className="ofs-lead reveal" style={{ marginTop: 18, maxWidth: '46ch' }}>
-                OFS Live is not built around copying entries. The value is
-                seeing how I read context, interpret participation and adjust
-                decisions while the market is still developing.
+              <p className="ofs-lead reveal" style={{ marginTop: 18 }}>
+                In the 1:1 program I personally help you implement order flow
+                into the strategy you already trade — your charts, your
+                sessions, your decisions, worked through directly with me.
+              </p>
+              <p className="ofs-fine reveal" style={{ marginTop: 14, fontSize: 15 }}>
+                It&rsquo;s separate from OFS Live, and by application.
               </p>
             </div>
-
-            <div className="reveal">
-              <DecisionFlow />
-            </div>
+            <Link
+              to="/"
+              className="ofs-btn-ghost reveal"
+              onClick={() => trackCTAClick(`${SOURCE} · mentorship`)}
+            >
+              See the 1:1 mentorship <span className="ofs-arrow" aria-hidden="true">&rarr;</span>
+            </Link>
           </div>
         </section>
 
@@ -287,27 +287,6 @@ const Live = () => {
           </div>
         </section>
 
-        {/* ── Quiet bridge to the 1:1 program ─────────────── */}
-        <section className="ofs-section t-dark ofs-bridge" aria-labelledby="mentor-h">
-          <div className="ofs-wrap ofs-bridge-in">
-            <div className="reveal">
-              <p className="ofs-label">Private mentorship</p>
-              <h2 id="mentor-h" style={{ marginTop: 12, fontSize: 'clamp(22px,1.4vw + 1rem,30px)' }}>
-                Want me working on your trading directly?
-              </h2>
-              <p className="ofs-fine" style={{ marginTop: 10, fontSize: 15 }}>
-                The 1:1 program is separate, and by application.
-              </p>
-            </div>
-            <Link
-              to="/"
-              className="ofs-btn-ghost reveal"
-              onClick={() => trackCTAClick(`${SOURCE} · mentorship`)}
-            >
-              See the 1:1 mentorship <span className="ofs-arrow" aria-hidden="true">&rarr;</span>
-            </Link>
-          </div>
-        </section>
       </main>
 
       <Footer />

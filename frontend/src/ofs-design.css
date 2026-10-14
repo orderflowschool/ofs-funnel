@@ -1176,16 +1176,11 @@ section[id]{ scroll-margin-top:calc(var(--nav-h) + 18px); }
 @media (max-width:759px){ .ofs-res-grid{ grid-template-columns:1fr; } .ofs-prep-grid{ grid-template-columns:1fr; gap:0; } .ofs-prep-item{ padding:16px 0; } }
 
 /* ── Direct Live Room page (/live) ─────────────────────────── */
-/* A member's own words under the hero buttons */
-.ofs-hero-quote{ margin:clamp(26px,3vw,36px) 0 0; padding-top:18px; border-top:1px solid var(--line); max-width:46ch; }
-.ofs-hero-quote blockquote{
-  margin:0; font-family:var(--font-display); font-size:clamp(16px,.4vw + 1rem,19px);
-  line-height:1.45; letter-spacing:-0.012em; color:var(--ink);
-}
-.ofs-hero-quote figcaption{
-  margin-top:8px; font-family:var(--font-mono); font-size:10.5px; font-weight:600;
-  letter-spacing:.13em; text-transform:uppercase; color:var(--muted);
-}
+/* Centered hero: copy and both buttons sit on the page's centre line */
+.ofs-live-hero-in{ max-width:760px; margin-inline:auto; text-align:center; }
+.ofs-live-hero-in .ofs-hero-cta{ justify-content:center; }
+/* Centered text reads badly with one word left alone on the last line */
+.ofs-live-hero-in p{ text-wrap:balance; }
 
 /* Button + terms on one line after a content block */
 .ofs-cta-row{ margin-top:clamp(28px,3.4vw,44px); display:flex; flex-wrap:wrap; align-items:center; gap:14px 22px; }
@@ -1201,8 +1196,7 @@ section[id]{ scroll-margin-top:calc(var(--nav-h) + 18px); }
 .ofs-inline-link{ color:var(--ink); font-weight:600; text-decoration:underline; text-underline-offset:3px; }
 .ofs-inline-link:hover{ opacity:.75; }
 
-/* Quiet strip pointing to the 1:1 program */
-.ofs-bridge{ padding-top:clamp(40px,5vw,64px); padding-bottom:clamp(40px,5vw,64px); border-top:1px solid var(--line); }
+/* 1:1 mentorship section: copy on the left, button on the right (stacks on phones) */
 .ofs-bridge-in{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:24px 40px; }
 
 /* Embedded Whop checkout container (OFS Live page) */
