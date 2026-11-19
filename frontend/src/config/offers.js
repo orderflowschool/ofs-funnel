@@ -47,7 +47,7 @@ export const OFS_LIVE = {
  * button on the page dies with it.
  */
 export const DISCORD = {
-  inviteUrl: 'https://discord.gg/645VWV5S3',
+  inviteUrl: 'https://discord.gg/Wu8Dhef6QN',
   memberCount: '1,300+',
 };
 
